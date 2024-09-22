@@ -1,0 +1,49 @@
+package detector
+
+import (
+	"bytes"
+	"fmt"
+	"os"
+	"regexp"
+
+	"github.com/go-faster/errors"
+	"github.com/wildwind123/extogen/internal/builder"
+)
+
+func ScannerTmpl(ogenSchemaPath string) (*builder.ScannerTmpl, error) {
+
+	b, err := os.ReadFile(ogenSchemaPath)
+	if err != nil {
+		return nil, errors.Wrap(err, "cant os.ReadFile")
+	}
+
+	packageName, err := getPackageNameFromSource(string(b))
+	if err != nil {
+		return nil, errors.Wrap(err, "cant getPackageNameFromSource")
+	}
+
+	tm := builder.ScannerTmpl{
+		Package:   packageName,
+		OptString: bytes.Contains(b, []byte(`OptString`)),
+		OptInt:    bytes.Contains(b, []byte(`OptInt`)),
+		OptInt64:  bytes.Contains(b, []byte(`OptInt64`)),
+	}
+
+	return &tm, nil
+}
+
+func getPackageNameFromSource(src string) (string, error) {
+	// Define a regex pattern to match the 'package' keyword followed by the package name
+	re := regexp.MustCompile(`(?m)^\s*package\s+([a-zA-Z0-9_]+)\s*$`)
+
+	// Find the match
+	match := re.FindStringSubmatch(src)
+
+	// Check if a match was found
+	if len(match) < 2 {
+		return "", fmt.Errorf("package declaration not found")
+	}
+
+	// Return the captured package name
+	return match[1], nil
+}
