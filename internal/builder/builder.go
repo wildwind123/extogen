@@ -18,7 +18,7 @@ type ScannerTmpl struct {
 	OptInt64  bool
 }
 
-func GetScanner(sT ScannerTmpl) ([]byte, error) {
+func GetScanner(sT *ScannerTmpl) ([]byte, error) {
 	var b bytes.Buffer
 	res := bufio.NewWriter(&b)
 
@@ -36,7 +36,7 @@ func GetScanner(sT ScannerTmpl) ([]byte, error) {
 	return b.Bytes(), nil
 }
 
-func GetConvert(sT ScannerTmpl) ([]byte, error) {
+func GetConvert(sT *ScannerTmpl) ([]byte, error) {
 	var b bytes.Buffer
 	res := bufio.NewWriter(&b)
 

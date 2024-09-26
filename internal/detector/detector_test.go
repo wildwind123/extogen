@@ -5,7 +5,7 @@ import (
 )
 
 func TestScannerTmpl(t *testing.T) {
-	tm, err := ScannerTmpl("fixture/oas_schemas_gen.tmpl")
+	tm, err := ScannerTmpl("fixture/oas_schemas_gen.go")
 	if err != nil {
 		t.Error(err)
 		return

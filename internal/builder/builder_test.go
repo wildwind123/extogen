@@ -6,7 +6,7 @@ import (
 
 func TestBuilder(t *testing.T) {
 
-	s, err := GetScanner(ScannerTmpl{
+	s, err := GetScanner(&ScannerTmpl{
 		Package:   "scanner",
 		OptString: true,
 		OptInt:    true,
