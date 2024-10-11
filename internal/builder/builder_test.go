@@ -1,6 +1,7 @@
 package builder
 
 import (
+	"os"
 	"testing"
 )
 
@@ -16,6 +17,7 @@ func TestBuilder(t *testing.T) {
 		t.Error(err)
 		return
 	}
+	os.WriteFile("asdf.txt", s, os.ModeExclusive|os.ModePerm)
 
 	if string(s) != `package scanner
 
@@ -32,6 +34,7 @@ func (oInt *OptInt) Scan(src any) error {
 	if src == nil {
 		return nil
 	}
+	oInt.Set = true	
 	return convertAssignRows(&oInt.Value, src)
 }
 
@@ -40,6 +43,7 @@ func (oInt *OptInt64) Scan(src any) error {
 	if src == nil {
 		return nil
 	}
+	oInt.Set = true	
 	return convertAssignRows(&oInt.Value, src)
 }
 ` {

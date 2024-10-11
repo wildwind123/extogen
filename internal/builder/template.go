@@ -15,6 +15,7 @@ func (oInt *OptInt) Scan(src any) error {
 	if src == nil {
 		return nil
 	}
+	oInt.Set = true	
 	return convertAssignRows(&oInt.Value, src)
 }
 {{end}}
@@ -23,6 +24,7 @@ func (oInt *OptInt64) Scan(src any) error {
 	if src == nil {
 		return nil
 	}
+	oInt.Set = true	
 	return convertAssignRows(&oInt.Value, src)
 }
 {{end}}`
