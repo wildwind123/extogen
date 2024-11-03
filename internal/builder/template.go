@@ -34,7 +34,7 @@ func (oFloat64 *OptFloat64) Scan(src any) error {
 		return nil
 	}
 	oFloat64.Set = true	
-	return convertAssignRows(&oInt.Value, src)
+	return convertAssignRows(&oFloat64.Value, src)
 }{{end}}`
 
 var convertTemplate = `package {{.Package}}

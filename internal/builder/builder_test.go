@@ -7,10 +7,11 @@ import (
 func TestBuilder(t *testing.T) {
 
 	s, err := GetScanner(&ScannerTmpl{
-		Package:   "scanner",
-		OptString: true,
-		OptInt:    true,
-		OptInt64:  true,
+		Package:    "scanner",
+		OptString:  true,
+		OptInt:     true,
+		OptInt64:   true,
+		OptFloat64: true,
 	})
 	if err != nil {
 		t.Error(err)
@@ -46,7 +47,14 @@ func (oInt *OptInt64) Scan(src any) error {
 	return convertAssignRows(&oInt.Value, src)
 }
 
-` {
+
+func (oFloat64 *OptFloat64) Scan(src any) error {
+	if src == nil {
+		return nil
+	}
+	oFloat64.Set = true	
+	return convertAssignRows(&oFloat64.Value, src)
+}` {
 		t.Error("wrong")
 	}
 }
