@@ -22,4 +22,7 @@ func TestScannerTmpl(t *testing.T) {
 	if tm.OptInt64 {
 		t.Error("OptInt64 should be false")
 	}
+	if !tm.OptFloat64 {
+		t.Error("OptFloat64 should be true")
+	}
 }

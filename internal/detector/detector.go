@@ -23,10 +23,11 @@ func ScannerTmpl(ogenSchemaPath string) (*builder.ScannerTmpl, error) {
 	}
 
 	tm := builder.ScannerTmpl{
-		Package:   packageName,
-		OptString: bytes.Contains(b, []byte(`OptString`)),
-		OptInt:    bytes.Contains(b, []byte(`OptInt`)),
-		OptInt64:  bytes.Contains(b, []byte(`OptInt64`)),
+		Package:    packageName,
+		OptString:  bytes.Contains(b, []byte(`OptString`)),
+		OptInt:     bytes.Contains(b, []byte(`OptInt`)),
+		OptInt64:   bytes.Contains(b, []byte(`OptInt64`)),
+		OptFloat64: bytes.Contains(b, []byte(`OptFloat64`)),
 	}
 
 	return &tm, nil

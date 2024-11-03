@@ -9,3 +9,8 @@ type OptInt struct {
 	Value int
 	Set   bool
 }
+
+type OptFloat64 struct {
+	Value float64
+	Set   bool
+}

@@ -14,3 +14,8 @@ type OptInt64 struct {
 	Value int64
 	Set   bool
 }
+
+type OptFloat64 struct {
+	Value float64
+	Set   bool
+}
