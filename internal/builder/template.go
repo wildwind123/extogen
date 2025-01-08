@@ -38,8 +38,9 @@ func (oFloat64 *OptFloat64) Scan(src any) error {
 }{{end}}`
 
 var nullSqlTemplate = `package {{.Package}}
+import "database/sql"
 {{if .OptString}}
-func (oS *OptString) ToSqlNull(src any) error {
+func (oS *OptString) ToSqlNull(src any) sql.NullString {
 	if src == nil {
 		return sql.NullString{
 			String: "",
@@ -53,7 +54,7 @@ func (oS *OptString) ToSqlNull(src any) error {
 }
 {{end}}
 {{if .OptInt}}
-func (oInt *OptInt) ToSqlNull(src any) error {
+func (oInt *OptInt) ToSqlNull(src any) sql.NullInt32 {
 	if src == nil {
 		return sql.NullInt32{
 			Int32: "",
@@ -67,7 +68,7 @@ func (oInt *OptInt) ToSqlNull(src any) error {
 }
 {{end}}
 {{if .OptInt64}}
-func (oInt *OptInt64) ToSqlNull(src any) error {
+func (oInt *OptInt64) ToSqlNull(src any) sql.NullInt64 {
 	if src == nil {
 		return sql.NullInt64{
 			Int64: "",
@@ -81,7 +82,7 @@ func (oInt *OptInt64) ToSqlNull(src any) error {
 }
 {{end}}
 {{if .OptFloat64}}
-func (oFloat64 *OptFloat64) ToSqlNull(src any) error {
+func (oFloat64 *OptFloat64) ToSqlNull(src any) sql.NullFloat64 {
 	if src == nil {
 		return sql.NullFloat64{
 			Float64: "",
