@@ -40,58 +40,34 @@ func (oFloat64 *OptFloat64) Scan(src any) error {
 var nullSqlTemplate = `package {{.Package}}
 import "database/sql"
 {{if .OptString}}
-func (oS *OptString) ToSqlNull(src any) sql.NullString {
-	if src == nil {
-		return sql.NullString{
-			String: "",
-			Valid:  false,
-		}
-	}
+func (oS *OptString) ToSqlNull() sql.NullString {
 	return sql.NullString{
-		String: "",
-		Valid:  true,
+		String: oS.Value,
+		Valid:  oS.Set,
 	}
 }
 {{end}}
 {{if .OptInt}}
-func (oInt *OptInt) ToSqlNull(src any) sql.NullInt32 {
-	if src == nil {
-		return sql.NullInt32{
-			Int32: 0,
-			Valid:  false,
-		}
-	}
+func (oInt *OptInt) ToSqlNull() sql.NullInt32 {
 	return sql.NullInt32{
-		Int32: 0,
-		Valid:  true,
+		String: oS.Value,
+		Valid:  oS.Set,
 	}
 }
 {{end}}
 {{if .OptInt64}}
-func (oInt *OptInt64) ToSqlNull(src any) sql.NullInt64 {
-	if src == nil {
-		return sql.NullInt64{
-			Int64: 0,
-			Valid:  false,
-		}
-	}
+func (oInt *OptInt64) ToSqlNull() sql.NullInt64 {
 	return sql.NullInt64{
-		Int64: 0,
-		Valid:  true,
+		String: oS.Value,
+		Valid:  oS.Set,
 	}
 }
 {{end}}
 {{if .OptFloat64}}
-func (oFloat64 *OptFloat64) ToSqlNull(src any) sql.NullFloat64 {
-	if src == nil {
-		return sql.NullFloat64{
-			Float64: 0,
-			Valid:  false,
-		}
-	}
+func (oFloat64 *OptFloat64) ToSqlNull() sql.NullFloat64 {
 	return sql.NullFloat64{
-		Float64: 0,
-		Valid:  true,
+		String: oS.Value,
+		Valid:  oS.Set,
 	}
 }{{end}}`
 
