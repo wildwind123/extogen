@@ -50,24 +50,24 @@ func (oS *OptString) ToSqlNull() sql.NullString {
 {{if .OptInt}}
 func (oInt *OptInt) ToSqlNull() sql.NullInt32 {
 	return sql.NullInt32{
-		String: oS.Value,
-		Valid:  oS.Set,
+		Int32: int32(oInt.Value),
+		Valid: oInt.Set,
 	}
 }
 {{end}}
 {{if .OptInt64}}
 func (oInt *OptInt64) ToSqlNull() sql.NullInt64 {
 	return sql.NullInt64{
-		String: oS.Value,
-		Valid:  oS.Set,
+		Int64: oInt.Value,
+		Valid:   oInt.Set,
 	}
 }
 {{end}}
 {{if .OptFloat64}}
 func (oFloat64 *OptFloat64) ToSqlNull() sql.NullFloat64 {
 	return sql.NullFloat64{
-		String: oS.Value,
-		Valid:  oS.Set,
+		Float64: oFloat64.Value,
+		Valid:   oFloat64.Set,
 	}
 }{{end}}`
 
