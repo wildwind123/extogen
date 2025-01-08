@@ -54,3 +54,21 @@ func GetConvert(sT *ScannerTmpl) ([]byte, error) {
 	}
 	return b.Bytes(), nil
 }
+
+func GetSqlNull(sT *ScannerTmpl) ([]byte, error) {
+	var b bytes.Buffer
+	res := bufio.NewWriter(&b)
+
+	tmpl := template.Must(template.New("scanner").Parse(nullSqlTemplate))
+
+	err := tmpl.Execute(res, sT)
+	if err != nil {
+		return nil, errors.Wrap(err, "")
+	}
+
+	err = res.Flush()
+	if err != nil {
+		return nil, errors.Wrap(err, " cant res.Flush")
+	}
+	return b.Bytes(), nil
+}

@@ -50,4 +50,15 @@ func main() {
 		logger.Error("cant write file", slog.Any("err", err))
 		return
 	}
+
+	sqlNullBytes, err := builder.GetSqlNull(sT)
+	if err != nil {
+		logger.Error("cant GetSqlNull", slog.Any("err", err))
+		return
+	}
+	err = os.WriteFile(fmt.Sprintf("%s/gogen_sqlnull.go", *sourceDir), sqlNullBytes, os.ModeExclusive|os.ModePerm)
+	if err != nil {
+		logger.Error("cant write file", slog.Any("err", err))
+		return
+	}
 }

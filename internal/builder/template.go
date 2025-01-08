@@ -37,6 +37,63 @@ func (oFloat64 *OptFloat64) Scan(src any) error {
 	return convertAssignRows(&oFloat64.Value, src)
 }{{end}}`
 
+var nullSqlTemplate = `package {{.Package}}
+{{if .OptString}}
+func (oS *OptString) ToSqlNull(src any) error {
+	if src == nil {
+		return sql.NullString{
+			String: "",
+			Valid:  false,
+		}
+	}
+	return sql.NullString{
+		String: "",
+		Valid:  true,
+	}
+}
+{{end}}
+{{if .OptInt}}
+func (oInt *OptInt) ToSqlNull(src any) error {
+	if src == nil {
+		return sql.NullInt32{
+			Int32: "",
+			Valid:  false,
+		}
+	}
+	return sql.NullInt32{
+		Int32: "",
+		Valid:  true,
+	}
+}
+{{end}}
+{{if .OptInt64}}
+func (oInt *OptInt64) ToSqlNull(src any) error {
+	if src == nil {
+		return sql.NullInt64{
+			Int64: "",
+			Valid:  false,
+		}
+	}
+	return sql.NullInt64{
+		Int64: "",
+		Valid:  true,
+	}
+}
+{{end}}
+{{if .OptFloat64}}
+func (oFloat64 *OptFloat64) ToSqlNull(src any) error {
+	if src == nil {
+		return sql.NullFloat64{
+			Float64: "",
+			Valid:  false,
+		}
+	}
+	return sql.NullFloat64{
+		Float64: "",
+		Valid:  true,
+	}
+}{{end}}`
+
 var convertTemplate = `package {{.Package}}
 
 import (
