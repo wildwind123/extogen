@@ -57,12 +57,12 @@ func (oS *OptString) ToSqlNull(src any) sql.NullString {
 func (oInt *OptInt) ToSqlNull(src any) sql.NullInt32 {
 	if src == nil {
 		return sql.NullInt32{
-			Int32: "",
+			Int32: 0,
 			Valid:  false,
 		}
 	}
 	return sql.NullInt32{
-		Int32: "",
+		Int32: 0,
 		Valid:  true,
 	}
 }
@@ -71,12 +71,12 @@ func (oInt *OptInt) ToSqlNull(src any) sql.NullInt32 {
 func (oInt *OptInt64) ToSqlNull(src any) sql.NullInt64 {
 	if src == nil {
 		return sql.NullInt64{
-			Int64: "",
+			Int64: 0,
 			Valid:  false,
 		}
 	}
 	return sql.NullInt64{
-		Int64: "",
+		Int64: 0,
 		Valid:  true,
 	}
 }
@@ -85,12 +85,12 @@ func (oInt *OptInt64) ToSqlNull(src any) sql.NullInt64 {
 func (oFloat64 *OptFloat64) ToSqlNull(src any) sql.NullFloat64 {
 	if src == nil {
 		return sql.NullFloat64{
-			Float64: "",
+			Float64: 0,
 			Valid:  false,
 		}
 	}
 	return sql.NullFloat64{
-		Float64: "",
+		Float64: 0,
 		Valid:  true,
 	}
 }{{end}}`
