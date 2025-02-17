@@ -23,7 +23,7 @@ func GetScanner(sT *ScannerTmpl) ([]byte, error) {
 	var b bytes.Buffer
 	res := bufio.NewWriter(&b)
 
-	tmpl := template.Must(template.New("scanner").Parse(scannerTemplate))
+	tmpl := template.Must(template.New("scanner").Parse(templateScanner))
 
 	err := tmpl.Execute(res, sT)
 	if err != nil {
@@ -41,7 +41,7 @@ func GetConvert(sT *ScannerTmpl) ([]byte, error) {
 	var b bytes.Buffer
 	res := bufio.NewWriter(&b)
 
-	tmpl := template.Must(template.New("scanner").Parse(convertTemplate))
+	tmpl := template.Must(template.New("scanner").Parse(templateConvert))
 
 	err := tmpl.Execute(res, sT)
 	if err != nil {
@@ -59,7 +59,25 @@ func GetSqlNull(sT *ScannerTmpl) ([]byte, error) {
 	var b bytes.Buffer
 	res := bufio.NewWriter(&b)
 
-	tmpl := template.Must(template.New("scanner").Parse(nullSqlTemplate))
+	tmpl := template.Must(template.New("scanner").Parse(templateSqlNull))
+
+	err := tmpl.Execute(res, sT)
+	if err != nil {
+		return nil, errors.Wrap(err, "")
+	}
+
+	err = res.Flush()
+	if err != nil {
+		return nil, errors.Wrap(err, " cant res.Flush")
+	}
+	return b.Bytes(), nil
+}
+
+func GetPointer(sT *ScannerTmpl) ([]byte, error) {
+	var b bytes.Buffer
+	res := bufio.NewWriter(&b)
+
+	tmpl := template.Must(template.New("scanner").Parse(templatePointer))
 
 	err := tmpl.Execute(res, sT)
 	if err != nil {

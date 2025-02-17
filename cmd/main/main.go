@@ -61,4 +61,15 @@ func main() {
 		logger.Error("cant write file", slog.Any("err", err))
 		return
 	}
+
+	pointerBytes, err := builder.GetPointer(sT)
+	if err != nil {
+		logger.Error("cant GetPointer", slog.Any("err", err))
+		return
+	}
+	err = os.WriteFile(fmt.Sprintf("%s/gogen_pointer.go", *sourceDir), pointerBytes, os.ModeExclusive|os.ModePerm)
+	if err != nil {
+		logger.Error("cant write file", slog.Any("err", err))
+		return
+	}
 }

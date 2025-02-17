@@ -1,6 +1,6 @@
 package builder
 
-var scannerTemplate = `package {{.Package}}
+var templateScanner = `package {{.Package}}
 {{if .OptString}}
 func (oS *OptString) Scan(src any) error {
 	if src == nil {
@@ -37,7 +37,7 @@ func (oFloat64 *OptFloat64) Scan(src any) error {
 	return convertAssignRows(&oFloat64.Value, src)
 }{{end}}`
 
-var nullSqlTemplate = `package {{.Package}}
+var templateSqlNull = `package {{.Package}}
 import "database/sql"
 {{if .OptString}}
 func (oS *OptString) ToSqlNull() sql.NullString {
@@ -71,7 +71,7 @@ func (oFloat64 *OptFloat64) ToSqlNull() sql.NullFloat64 {
 	}
 }{{end}}`
 
-var convertTemplate = `package {{.Package}}
+var templateConvert = `package {{.Package}}
 
 import (
 	"bytes"
@@ -365,3 +365,38 @@ func strconvErr(err error) error {
 	return err
 }
 `
+
+var templatePointer = `package {{.Package}}
+import "database/sql"
+{{if .OptString}}
+func (oS *OptString) ToPointer() *string {
+	if !oS.Set {
+		return nil
+	}
+	return &oS.Value
+}
+{{end}}
+{{if .OptInt}}
+func (oInt *OptInt) ToPointer() *int {
+	if !oInt.Set {
+		return nil
+	}
+	return &oInt.Value
+}
+{{end}}
+{{if .OptInt64}}
+func (oInt64 *OptInt64) ToPointer() *int {
+	if !oInt64.Set {
+		return nil
+	}
+	return &oInt64.Value
+}
+{{end}}
+{{if .OptFloat64}}
+func (oFloat64 *OptFloat64) ToPointer() *float64 {
+	if !oFloat64.Set {
+		return nil
+	}
+	return &oFloat64.Value
+}
+}{{end}}`

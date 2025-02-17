@@ -1,3 +1,4 @@
 gogen_convert.go
 gogen_scanner.go
 gogen_sqlnull.go
+gogen_pointer.go
