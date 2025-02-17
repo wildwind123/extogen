@@ -367,7 +367,6 @@ func strconvErr(err error) error {
 `
 
 var templatePointer = `package {{.Package}}
-import "database/sql"
 {{if .OptString}}
 func (oS *OptString) ToPointer() *string {
 	if !oS.Set {
@@ -398,5 +397,4 @@ func (oFloat64 *OptFloat64) ToPointer() *float64 {
 		return nil
 	}
 	return &oFloat64.Value
-}
 }{{end}}`

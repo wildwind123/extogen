@@ -1,3 +1,3 @@
 package generate
 
-//go:generate go run github.com/wildwind123/extogen/cmd/main@54625d51b6d4d6fdbe04004b1ab58005dc64b39e --source_dir fixture
+//go:generate go run github.com/wildwind123/extogen/cmd/main@10a6fa3d6ad73fc165db14c301f05b414e061584 --source_dir fixture
