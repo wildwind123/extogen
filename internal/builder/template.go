@@ -384,7 +384,7 @@ func (oInt *OptInt) ToPointer() *int {
 }
 {{end}}
 {{if .OptInt64}}
-func (oInt64 *OptInt64) ToPointer() *int {
+func (oInt64 *OptInt64) ToPointer() *int64 {
 	if !oInt64.Set {
 		return nil
 	}
