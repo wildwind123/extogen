@@ -28,6 +28,7 @@ func ScannerTmpl(ogenSchemaPath string) (*builder.ScannerTmpl, error) {
 		OptInt:     bytes.Contains(b, []byte(`OptInt`)),
 		OptInt64:   bytes.Contains(b, []byte(`OptInt64`)),
 		OptFloat64: bytes.Contains(b, []byte(`OptFloat64`)),
+		OptBool:    bytes.Contains(b, []byte(`OptBool`)),
 	}
 
 	return &tm, nil
