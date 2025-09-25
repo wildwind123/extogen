@@ -18,6 +18,12 @@ type ScannerTmpl struct {
 	OptInt64   bool
 	OptFloat64 bool
 	OptBool    bool
+	// nil
+	OptNilString  bool
+	OptNilInt     bool
+	OptNilInt64   bool
+	OptNilFloat64 bool
+	OptNilBool    bool
 }
 
 func GetScanner(sT *ScannerTmpl) ([]byte, error) {

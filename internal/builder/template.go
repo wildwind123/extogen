@@ -78,6 +78,19 @@ func (oFloat64 *OptFloat64) ToSqlNull() sql.NullFloat64 {
 		Float64: oFloat64.Value,
 		Valid:   oFloat64.Set,
 	}
+}{{end}}
+{{if .OptNilInt}}
+func (oInt *OptNilInt) ToSqlNull() sql.NullInt16 {
+	if oInt.Null {
+		return sql.NullInt16{
+			Int16: 0,
+			Valid: false,
+		}
+	}
+	return sql.NullInt16{
+		Int16: int16(oInt.Value),
+		Valid: oInt.Set,
+	}
 }{{end}}`
 
 var templateConvert = `package {{.Package}}

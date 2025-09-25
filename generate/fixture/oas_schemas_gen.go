@@ -19,3 +19,9 @@ type OptBool struct {
 	Value bool
 	Set   bool
 }
+
+type OptNilInt struct {
+	Value int
+	Set   bool
+	Null  bool
+}
