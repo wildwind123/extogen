@@ -91,6 +91,46 @@ func (oInt *OptNilInt) ToSqlNull() sql.NullInt16 {
 		Int16: int16(oInt.Value),
 		Valid: oInt.Set,
 	}
+}{{end}}
+{{if .OptNilString}}
+func (opt *OptNilString) ToSqlNull() sql.NullString {
+	if opt.Null {
+		return sql.NullString{}
+	}
+	return sql.NullString{
+		String: opt.Value,
+		Valid: opt.Set,
+	}
+}{{end}}
+{{if .OptNilInt64}}
+func (opt *OptNilInt64) ToSqlNull() sql.NullInt {
+	if opt.Null {
+		return sql.NullInt{}
+	}
+	return sql.NullInt{
+		Int: opt.Value,
+		Valid: opt.Set,
+	}
+}{{end}}
+{{if .OptNilFloat64}}
+func (opt *OptNilFloat64) ToSqlNull() sql.NullFloat64 {
+	if opt.Null {
+		return sql.NullFloat64{}
+	}
+	return sql.NullFloat64{
+		Float64: opt.Value,
+		Valid: opt.Set,
+	}
+}{{end}}
+{{if .OptNilBool}}
+func (opt *OptNilBool) ToSqlNull() sql.NullBool {
+	if opt.Null {
+		return sql.NullBool{}
+	}
+	return sql.NullBool{
+		Bool: opt.Value,
+		Valid: opt.Set,
+	}
 }{{end}}`
 
 var templateConvert = `package {{.Package}}
