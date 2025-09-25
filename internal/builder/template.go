@@ -103,12 +103,12 @@ func (opt *OptNilString) ToSqlNull() sql.NullString {
 	}
 }{{end}}
 {{if .OptNilInt64}}
-func (opt *OptNilInt64) ToSqlNull() sql.NullInt {
+func (opt *OptNilInt64) ToSqlNull() sql.NullInt64 {
 	if opt.Null {
-		return sql.NullInt{}
+		return sql.NullInt64{}
 	}
-	return sql.NullInt{
-		Int: opt.Value,
+	return sql.NullInt64{
+		Int64: opt.Value,
 		Valid: opt.Set,
 	}
 }{{end}}
