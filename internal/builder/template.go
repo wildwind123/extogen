@@ -459,4 +459,12 @@ func (oFloat64 *OptFloat64) ToPointer() *float64 {
 		return nil
 	}
 	return &oFloat64.Value
-}{{end}}`
+}{{end}}
+{{if .OptBool}}
+func (oBool *OptBool) ToPointer() *bool {
+	if !oBool.Set {
+		return nil
+	}
+	return &oBool.Value
+}{{end}}
+`
