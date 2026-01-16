@@ -429,6 +429,10 @@ func strconvErr(err error) error {
 `
 
 var templatePointer = `package {{.Package}}
+{{if .OptDateTime}}
+import "time"
+}{{end}}
+
 {{if .OptString}}
 func (oS *OptString) ToPointer() *string {
 	if !oS.Set {
