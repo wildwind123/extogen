@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"log/slog"
@@ -56,10 +57,13 @@ func main() {
 		logger.Error("cant GetSqlNull", slog.Any("err", err))
 		return
 	}
-	err = os.WriteFile(fmt.Sprintf("%s/gogen_sqlnull.go", *sourceDir), sqlNullBytes, os.ModeExclusive|os.ModePerm)
-	if err != nil {
-		logger.Error("cant write file", slog.Any("err", err))
-		return
+
+	if bytes.Contains(scannerBytes, []byte(`func`)) {
+		err = os.WriteFile(fmt.Sprintf("%s/gogen_sqlnull.go", *sourceDir), sqlNullBytes, os.ModeExclusive|os.ModePerm)
+		if err != nil {
+			logger.Error("cant write file", slog.Any("err", err))
+			return
+		}
 	}
 
 	pointerBytes, err := builder.GetPointer(sT)
