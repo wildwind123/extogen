@@ -23,18 +23,20 @@ func ScannerTmpl(ogenSchemaPath string) (*builder.ScannerTmpl, error) {
 	}
 
 	tm := builder.ScannerTmpl{
-		Package:    packageName,
-		OptString:  bytes.Contains(b, []byte(` OptString `)),
-		OptInt:     bytes.Contains(b, []byte(` OptInt `)),
-		OptInt64:   bytes.Contains(b, []byte(` OptInt64 `)),
-		OptFloat64: bytes.Contains(b, []byte(` OptFloat64 `)),
-		OptBool:    bytes.Contains(b, []byte(` OptBool `)),
+		Package:     packageName,
+		OptString:   bytes.Contains(b, []byte(` OptString `)),
+		OptInt:      bytes.Contains(b, []byte(` OptInt `)),
+		OptInt64:    bytes.Contains(b, []byte(` OptInt64 `)),
+		OptFloat64:  bytes.Contains(b, []byte(` OptFloat64 `)),
+		OptBool:     bytes.Contains(b, []byte(` OptBool `)),
+		OptDateTime: bytes.Contains(b, []byte(` OptDateTime `)),
 		// nil
-		OptNilString:  bytes.Contains(b, []byte(` OptNilString `)),
-		OptNilInt:     bytes.Contains(b, []byte(` OptNilInt `)),
-		OptNilInt64:   bytes.Contains(b, []byte(` OptNilInt64 `)),
-		OptNilFloat64: bytes.Contains(b, []byte(` OptNilFloat64 `)),
-		OptNilBool:    bytes.Contains(b, []byte(` OptNilBool `)),
+		OptNilString:   bytes.Contains(b, []byte(` OptNilString `)),
+		OptNilInt:      bytes.Contains(b, []byte(` OptNilInt `)),
+		OptNilInt64:    bytes.Contains(b, []byte(` OptNilInt64 `)),
+		OptNilFloat64:  bytes.Contains(b, []byte(` OptNilFloat64 `)),
+		OptNilBool:     bytes.Contains(b, []byte(` OptNilBool `)),
+		OptNilDateTime: bytes.Contains(b, []byte(` OptNilDateTime `)),
 	}
 
 	return &tm, nil

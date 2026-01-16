@@ -12,18 +12,21 @@ type Builder struct {
 }
 
 type ScannerTmpl struct {
-	Package    string
-	OptString  bool
-	OptInt     bool
-	OptInt64   bool
-	OptFloat64 bool
-	OptBool    bool
+	Package     string
+	OptString   bool
+	OptInt      bool
+	OptInt64    bool
+	OptFloat64  bool
+	OptBool     bool
+	OptDateTime bool
+
 	// nil
-	OptNilString  bool
-	OptNilInt     bool
-	OptNilInt64   bool
-	OptNilFloat64 bool
-	OptNilBool    bool
+	OptNilString   bool
+	OptNilInt      bool
+	OptNilInt64    bool
+	OptNilFloat64  bool
+	OptNilBool     bool
+	OptNilDateTime bool
 }
 
 func GetScanner(sT *ScannerTmpl) ([]byte, error) {

@@ -467,4 +467,11 @@ func (oBool *OptBool) ToPointer() *bool {
 	}
 	return &oBool.Value
 }{{end}}
+{{if .OptDateTime}}
+func (optDateTime *OptDateTime) ToPointer() *time.Time {
+	if !optDateTime.Set {
+		return nil
+	}
+	return &optDateTime.Value
+}{{end}}
 `
